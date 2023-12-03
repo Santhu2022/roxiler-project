@@ -3,9 +3,10 @@ import classes from './App.module.css';
 import { IoIosSearch } from "react-icons/io";
 import TransactionsTable from './components/TransactionsTable';
 import Statistics from './components/Statistics';
-import { getStatistics, getStatisticsPriceRange, getTransactions } from './webservices/ApiController';
+import { getStatistics, getStatisticsPriceRange, getStatisticsUniqueCategory, getTransactions } from './webservices/ApiController';
 import PriceBarChart from './components/PriceBarChart';
 import { monthsList } from './utilities/Constants';
+import StatisticsPieChart from './components/StatisticsPieChart';
 
 
 
@@ -20,6 +21,7 @@ function App() {
   const [showLoader, setShowLoader] = useState(true)
   const [statisticsData, setStatisticsData] = useState({})
   const [priceRangeData, setPriceRangeData] = useState([])
+  const [uniqueCategoryData, setUniqueCategoryData] = useState([])
 
   useEffect(() => {
     fetchTransactions()
@@ -28,6 +30,7 @@ function App() {
   useEffect(() => {
     fetchStatistics()
     fetchPriceRangeStatistics()
+    fetchUniqueCategoryStatistics()
   }, [selectedMonth])
 
 
@@ -63,6 +66,16 @@ function App() {
       console.log(error.message)
     }
   }
+
+  const fetchUniqueCategoryStatistics = async () => {
+    try {
+      const data = await getStatisticsUniqueCategory(selectedMonth)
+      setUniqueCategoryData(data)
+    } catch (error) {
+      console.log(error.message)
+    }
+  }
+
 
 
   const onSubmitSearch = (e) => {
@@ -152,10 +165,17 @@ function App() {
         selectedMonth={monthsList[selectedMonth - 1]}
         statisticsData={statisticsData}
       />
-      <PriceBarChart
-        priceRangeData={priceRangeData}
-        selectedMonth={monthsList[selectedMonth - 1]}
-      />
+
+      <section className={classes.statisticsContainer}>
+        <PriceBarChart
+          priceRangeData={priceRangeData}
+          selectedMonth={monthsList[selectedMonth - 1]}
+        />
+        <StatisticsPieChart
+          uniqueCategoryData={uniqueCategoryData}
+          selectedMonth={monthsList[selectedMonth - 1]}
+        />
+      </section>
     </div>
   );
 }

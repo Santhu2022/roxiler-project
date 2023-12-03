@@ -1,6 +1,6 @@
 import React from 'react'
 import classes from './PriceBarChart.module.css'
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, CartesianAxis, LabelList } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid } from 'recharts';
 
 
 const PriceBarChart = ({ priceRangeData, selectedMonth }) => {

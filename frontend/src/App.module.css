@@ -120,3 +120,8 @@ body {
   cursor: pointer;
   outline: none;
 }
+
+.statisticsContainer {
+  display: flex;
+  justify-content: space-between;
+}

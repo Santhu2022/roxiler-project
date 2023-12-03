@@ -30,3 +30,13 @@ export const getStatisticsPriceRange = async (month) => {
         console.log(error)
     }
 }
+
+export const getStatisticsUniqueCategory = async (month) => {
+    try {
+        const response = await fetch(EndPoints.UNIQUE_CATEGORY(month))
+        const data = await response.json()
+        return data
+    } catch (error) {
+        console.log(error)
+    }
+}
