@@ -90,6 +90,10 @@ function App() {
     }
   }
 
+  const onChangeMonth = (e) => {
+    setSelectedMonth(e.target.value)
+    setPageNum(1)
+  }
 
   return (
     <div className={classes.mainContainer}>
@@ -118,7 +122,7 @@ function App() {
           id='month'
           name='month'
           value={selectedMonth}
-          onChange={(e) => setSelectedMonth(e.target.value)}
+          onChange={onChangeMonth}
         >
           <option key={0} value='' >All</option>
           {
