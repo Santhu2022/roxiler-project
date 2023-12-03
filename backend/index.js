@@ -135,7 +135,7 @@ app.get('/statistics/price-range/', async (request, response) => {
 })
 
 //API -4 Statistics Data of products with unique category
-app.get('/statistics/unique-category', async (request, response) => {
+app.get('/statistics/unique-category/', async (request, response) => {
     try {
         const { month = 3 } = request.query
         const monthFilter = month ? `ltrim(strftime('%m', date_of_sale), '0') = '${month}'` : '1=1'
