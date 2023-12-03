@@ -1,4 +1,4 @@
-const BASE_URl = false ? 'https://roxiler-backend-3nx7.onrender.com/' : 'http://localhost:3000/'
+const BASE_URl = true ? 'https://roxiler-backend-3nx7.onrender.com/' : 'http://localhost:3000/'
 
 const EndPoints = {
     TRANSACTIONS: (searchText, month, pageNum) => (BASE_URl + `transactions/?search=${searchText}&month=${month}&page=${pageNum}&pageSize=10`),
