@@ -114,7 +114,7 @@ function App() {
             type='button'
             onClick={() => fetchTransactions()}
           >
-            <IoIosSearch size={'1.15rem'} />
+            <IoIosSearch size={'1rem'} className={classes.searchIcon} />
           </button>
         </form>
         <select

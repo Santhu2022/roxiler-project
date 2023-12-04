@@ -1,9 +1,15 @@
 .mainContainer {
     margin-top: 2rem;
-
+    width: 60%;
 }
 
 .heading {
     font: 700 1.5rem Raleway;
     margin-bottom: 1.5rem;
+}
+
+@media screen and (max-width: 992px) {
+    .mainContainer {
+        width: 100%;
+    }
 }

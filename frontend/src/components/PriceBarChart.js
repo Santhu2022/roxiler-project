@@ -1,6 +1,6 @@
 import React from 'react'
 import classes from './PriceBarChart.module.css'
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, ResponsiveContainer } from 'recharts';
 
 
 const PriceBarChart = ({ priceRangeData, selectedMonth }) => {
@@ -19,25 +19,27 @@ const PriceBarChart = ({ priceRangeData, selectedMonth }) => {
     return (
         <section className={classes.mainContainer}>
             <h1 className={classes.heading}>Bar Chart Stats {selectedMonth ? `- ${selectedMonth}` : ''}</h1>
-            <BarChart width={800} height={500} data={data} barCategoryGap={0} >
-                <XAxis
-                    dataKey="range"
-                    angle={320}
-                    tickLine={false}
-                    tickMargin={20}
-                    height={70}
-                    axisLine={{ stroke: '#757c7c', strokeWidth: 0.2 }}
-                    padding='no-gap'
-                />
-                <YAxis tickLine={false} axisLine={false} interval={0} />
-                <CartesianGrid vertical={false} stroke="#757c7c" strokeDasharray={'0'} strokeWidth={0.1} strokeOpacity={0.8} />
-                <Bar
-                    dataKey="count"
-                    radius={[5, 5, 0, 0]}
-                    barSize={50}
-                    fill={'#6be4e3'}
-                />
-            </BarChart>
+            <ResponsiveContainer width='100%' height={500}>
+                <BarChart data={data} barCategoryGap={0} >
+                    <XAxis
+                        dataKey="range"
+                        angle={320}
+                        tickLine={false}
+                        tickMargin={20}
+                        height={70}
+                        axisLine={{ stroke: '#757c7c', strokeWidth: 0.2 }}
+                        padding='no-gap'
+                    />
+                    <YAxis tickLine={false} axisLine={false} interval={0} />
+                    <CartesianGrid vertical={false} stroke="#757c7c" strokeDasharray={'0'} strokeWidth={0.1} strokeOpacity={0.8} />
+                    <Bar
+                        dataKey="count"
+                        radius={[5, 5, 0, 0]}
+                        barSize={50}
+                        fill={'#6be4e3'}
+                    />
+                </BarChart>
+            </ResponsiveContainer>
         </section >
     )
 }
