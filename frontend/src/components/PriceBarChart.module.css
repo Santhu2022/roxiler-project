@@ -13,6 +13,9 @@
     margin-bottom: 1.5rem;
 }
 
+.chartWrapper {
+    overflow-x: scroll;
+}
 
 @media screen and (max-width: 992px) {
     .mainContainer {

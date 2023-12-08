@@ -22,28 +22,30 @@ const PriceBarChart = ({ priceRangeData, selectedMonth, showLoader }) => {
             <h1 className={classes.heading}>Bar Chart Stats {selectedMonth ? `- ${selectedMonth}` : ''}</h1>
             <p className={classes.description}>Number of Items by Price Range</p>
             {showLoader === false ? (
-                <ResponsiveContainer width='100%' height={400} style={{ padding: '1rem' }} >
-                    <BarChart data={data} barCategoryGap={0} >
-                        <XAxis
-                            dataKey="range"
-                            angle={320}
-                            tickLine={false}
-                            tickMargin={20}
-                            height={70}
-                            axisLine={{ stroke: '#757c7c', strokeWidth: 0.2 }}
-                            padding='no-gap'
-                        />
-                        <YAxis tickLine={false} axisLine={false} interval={0} />
-                        <CartesianGrid vertical={false} stroke="#757c7c" strokeDasharray={'0'} strokeWidth={0.1} strokeOpacity={0.8} />
-                        <Bar
-                            dataKey="items"
-                            radius={[5, 5, 0, 0]}
-                            // barSize={50}
-                            fill={'#6be4e3'}
-                        />
-                        <Tooltip />
-                    </BarChart>
-                </ResponsiveContainer>
+                <div className={classes.chartWrapper}>
+                    <ResponsiveContainer width={600} height={400} style={{ padding: '1rem' }} >
+                        <BarChart data={data} barCategoryGap={0} >
+                            <XAxis
+                                dataKey="range"
+                                angle={320}
+                                tickLine={false}
+                                tickMargin={20}
+                                height={70}
+                                axisLine={{ stroke: '#757c7c', strokeWidth: 0.2 }}
+                                padding='no-gap'
+                            />
+                            <YAxis tickLine={false} axisLine={false} interval={0} />
+                            <CartesianGrid vertical={false} stroke="#757c7c" strokeDasharray={'0'} strokeWidth={0.1} strokeOpacity={0.8} />
+                            <Bar
+                                dataKey="items"
+                                radius={[5, 5, 0, 0]}
+                                barSize={50}
+                                fill={'#6be4e3'}
+                            />
+                            <Tooltip />
+                        </BarChart>
+                    </ResponsiveContainer>
+                </div>
             ) : (
                 <ThreeDots
                     height="40"

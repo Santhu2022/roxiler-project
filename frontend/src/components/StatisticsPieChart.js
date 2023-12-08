@@ -1,5 +1,5 @@
 import React from 'react'
-import { Pie, PieChart, Tooltip, Cell, ResponsiveContainer } from 'recharts'
+import { Pie, PieChart, Tooltip, Cell, ResponsiveContainer, Legend } from 'recharts'
 import classes from './StatisticsPieChart.module.css'
 import { ThreeDots } from 'react-loader-spinner'
 
@@ -29,6 +29,7 @@ const StatisticsPieChart = ({ uniqueCategoryData, selectedMonth, showLoader }) =
 
                         </Pie>
                         <Tooltip />
+                        <Legend />
                     </PieChart>
                 </ResponsiveContainer>
             ) : (
