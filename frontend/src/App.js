@@ -18,10 +18,13 @@ function App() {
   const [pageNum, setPageNum] = useState(1)
   const [hasNextPage, setHasNextPage] = useState(false)
   const [transactions, setTransactions] = useState([])
-  const [showLoader, setShowLoader] = useState(true)
   const [statisticsData, setStatisticsData] = useState({})
   const [priceRangeData, setPriceRangeData] = useState([])
   const [uniqueCategoryData, setUniqueCategoryData] = useState([])
+  const [showLoader1, setShowLoader1] = useState(true)
+  const [showLoader2, setShowLoader2] = useState(true)
+  const [showLoader3, setShowLoader3] = useState(true)
+  const [showLoader4, setShowLoader4] = useState(true)
 
   useEffect(() => {
     fetchTransactions()
@@ -36,7 +39,7 @@ function App() {
 
 
   const fetchTransactions = async (searchStringEmpty) => {
-    setShowLoader(true)
+    setShowLoader1(true)
     const searchString = searchStringEmpty === true ? '' : searchText
     try {
       const { data, hasNextPage } = await getTransactions(searchString, selectedMonth, pageNum)
@@ -45,34 +48,43 @@ function App() {
     } catch (error) {
       console.log(error.message)
     } finally {
-      setShowLoader(false)
+      setShowLoader1(false)
     }
   }
 
   const fetchStatistics = async () => {
+    setShowLoader2(true)
     try {
       const data = await getStatistics(selectedMonth)
       setStatisticsData(data)
     } catch (error) {
       console.log(error.message)
+    } finally {
+      setShowLoader2(false)
     }
   }
 
   const fetchPriceRangeStatistics = async () => {
+    setShowLoader3(true)
     try {
       const data = await getStatisticsPriceRange(selectedMonth)
       setPriceRangeData(data)
     } catch (error) {
       console.log(error.message)
+    } finally {
+      setShowLoader3(false)
     }
   }
 
   const fetchUniqueCategoryStatistics = async () => {
+    setShowLoader4(true)
     try {
       const data = await getStatisticsUniqueCategory(selectedMonth)
       setUniqueCategoryData(data)
     } catch (error) {
       console.log(error.message)
+    } finally {
+      setShowLoader4(false)
     }
   }
 
@@ -135,7 +147,7 @@ function App() {
       {/* Transactions Table */}
       <TransactionsTable
         transactions={transactions}
-        showLoader={showLoader}
+        showLoader={showLoader1}
       />
 
       {/* Pagination */}
@@ -168,16 +180,19 @@ function App() {
       <Statistics
         selectedMonth={monthsList[selectedMonth - 1]}
         statisticsData={statisticsData}
+        showLoader={showLoader2}
       />
 
       <section className={classes.statisticsContainer}>
         <PriceBarChart
           priceRangeData={priceRangeData}
           selectedMonth={monthsList[selectedMonth - 1]}
+          showLoader={showLoader3}
         />
         <StatisticsPieChart
           uniqueCategoryData={uniqueCategoryData}
           selectedMonth={monthsList[selectedMonth - 1]}
+          showLoader={showLoader4}
         />
       </section>
     </div>
